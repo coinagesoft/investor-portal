@@ -246,6 +246,57 @@ app.delete("/folder/:id", async (req, res) => {
 
 });
 
+
+// GET FILES
+app.get("/file", async (req, res) => {
+
+    try {
+
+        const files = await File.find()
+            .populate({
+                path: "folderId",
+                populate: {
+                    path: "categoryId"
+                }
+            });
+
+        res.json(files);
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
+    }
+
+});
+
+
+// DELETE FILE
+app.delete("/file/:id", async (req, res) => {
+
+    try {
+
+        await File.findByIdAndDelete(req.params.id);
+
+        res.json({
+            success: true,
+            message: "File Deleted"
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
+    }
+
+});
+
 // app.use(cors());
 
 // app.use(cors({
