@@ -297,6 +297,68 @@ app.delete("/file/:id", async (req, res) => {
 
 });
 
+
+// DASHBOARD STATS
+app.get("/dashboard-stats", async (req, res) => {
+
+    try {
+
+        const totalCategories =
+            await Category.countDocuments();
+
+        const totalFolders =
+            await Folder.countDocuments();
+
+        const totalFiles =
+            await File.countDocuments();
+
+        res.json({
+
+            totalCategories,
+            totalFolders,
+            totalFiles
+
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
+    }
+
+});
+
+
+// RECENT FILES
+app.get("/recent-files", async (req, res) => {
+
+    try {
+
+        const files = await File.find()
+            .sort({ _id: -1 })
+            .limit(5)
+            .populate({
+                path: "folderId",
+                populate: {
+                    path: "categoryId"
+                }
+            });
+
+        res.json(files);
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
+    }
+
+});
 // app.use(cors());
 
 // app.use(cors({
