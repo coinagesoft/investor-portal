@@ -1,6 +1,7 @@
-import Dashboard from "./dashboard/page"
+import Dashboard from "./dashboard/page";
+
 export default function Main() {
-  return (
-   <Dashboard/>
-  );
+
+    return <Dashboard />;
+
 }
