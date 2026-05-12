@@ -1,14 +1,11 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const folderSchema = new mongoose.Schema({
-
     name: String,
-
     categoryId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Category"
     }
-
 });
 
-module.exports = mongoose.model("Folder", folderSchema);
+export default mongoose.models.Folder || mongoose.model("Folder", folderSchema);

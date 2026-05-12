@@ -21,7 +21,7 @@ export default function Category() {
                 `${process.env.NEXT_PUBLIC_API_URL}/category`
             );
 
-            setCategories(response.data);
+           setCategories(response.data.data);
 
         } catch (error) {
 
@@ -54,10 +54,12 @@ export default function Category() {
     };
 
     useEffect(() => {
-        getCategories();
-    }, []);
+    getCategories();
+}, []);
 
-    return (
+console.log(categories);
+
+return (
 
         <div className="container-fluid px-0">
 
@@ -103,36 +105,38 @@ export default function Category() {
 
                         <tbody>
 
-                            {categories.map((item, index) => (
+                            {Array.isArray(categories) &&
+                                categories.map((item, index) => (
 
-                                <tr key={item._id}>
+                                    <tr key={item._id}>
 
-                                    <td>{index + 1}</td>
+                                        <td>{index + 1}</td>
 
-                                    <td>{item.name}</td>
-                                    <td></td>
-                                    <td></td>
+                                        <td>{item.name}</td>
 
-                                    <td>
+                                        <td></td>
+                                        <td></td>
 
-                                        <button
-                                            className="btn btn-sm btn-outline-danger "
-                                            onClick={() => {
+                                        <td>
 
-                                                if (window.confirm("Delete this category?")) {
-                                                    deleteCategory(item._id)
-                                                }
+                                            <button
+                                                className="btn btn-sm btn-outline-danger"
+                                                onClick={() => {
 
-                                            }}
-                                        >
-                                            <i className="ri-delete-bin-line"></i>
-                                        </button>
+                                                    if (window.confirm("Delete this category?")) {
+                                                        deleteCategory(item._id)
+                                                    }
 
-                                    </td>
+                                                }}
+                                            >
+                                                <i className="ri-delete-bin-line"></i>
+                                            </button>
 
-                                </tr>
+                                        </td>
 
-                            ))}
+                                    </tr>
+
+                                ))}
 
                         </tbody>
 

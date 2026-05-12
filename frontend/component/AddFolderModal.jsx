@@ -26,7 +26,7 @@ export default function AddFolderModal({
                 `${process.env.NEXT_PUBLIC_API_URL}/category`
             );
 
-            setCategories(response.data);
+           setCategories(response.data.data);
 
         } catch (error) {
 
