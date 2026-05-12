@@ -1,12 +1,23 @@
+"use client";
+
 export default function Navbar() {
+  const toggleMobileMenu = () => {
+    document.documentElement.classList.toggle("layout-menu-expanded");
+  };
+
   return (
     <nav
       className="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
       id="layout-navbar">
       <div className="layout-menu-toggle navbar-nav align-items-xl-center me-4 me-xl-0 d-xl-none">
-        <a className="nav-item nav-link px-0 me-xl-6" href="javascript:void(0)">
+        <button
+          type="button"
+          className="nav-item nav-link px-0 me-xl-6 btn btn-link"
+          aria-label="Toggle menu"
+          onClick={toggleMobileMenu}
+        >
           <i className="ri-menu-fill ri-22px"></i>
-        </a>
+        </button>
       </div>
 
       <div className="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
@@ -23,7 +34,7 @@ export default function Navbar() {
 
         <ul className="navbar-nav flex-row align-items-center ms-auto">
 
-          <li className="nav-item dropdown-language dropdown">
+          {/* <li className="nav-item dropdown-language dropdown">
             <a
               className="nav-link btn btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow"
               href="javascript:void(0);"
@@ -52,7 +63,7 @@ export default function Navbar() {
                 </a>
               </li>
             </ul>
-          </li>
+          </li> */}
 
 
 
@@ -84,7 +95,7 @@ export default function Navbar() {
 
 
 
-          <li className="nav-item dropdown-shortcuts navbar-dropdown dropdown me-1 me-xl-0">
+          {/* <li className="nav-item dropdown-shortcuts navbar-dropdown dropdown me-1 me-xl-0">
             <a
               className="nav-link btn btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow"
               href="javascript:void(0);"
@@ -174,11 +185,11 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-          </li>
+          </li> */}
 
 
 
-          <li className="nav-item dropdown-notifications navbar-dropdown dropdown me-4 me-xl-1">
+          {/* <li className="nav-item dropdown-notifications navbar-dropdown dropdown me-4 me-xl-1">
             <a
               className="nav-link btn btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow"
               href="javascript:void(0);"
@@ -426,7 +437,7 @@ export default function Navbar() {
                 </div>
               </li>
             </ul>
-          </li>
+          </li> */}
 
 
 
@@ -452,7 +463,7 @@ export default function Navbar() {
                   </div>
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <div className="dropdown-divider"></div>
               </li>
               <li>
@@ -495,7 +506,7 @@ export default function Navbar() {
                     <i className="ri-logout-box-r-line ms-2 ri-16px"></i>
                   </a>
                 </div>
-              </li>
+              </li> */}
             </ul>
           </li>
 

@@ -3,6 +3,7 @@ import Script from "next/script";
 
 import Navbar from "../component/Navbar";
 import Sidebar from "../component/Sidebar";
+import MobileMenuOverlay from "../component/MobileMenuOverlay";
 
 export const metadata = {
   title: "Investor Portal Admin",
@@ -63,6 +64,8 @@ export default function RootLayout({ children }) {
 
             </div>
           </div>
+
+          <MobileMenuOverlay />
         </div>
 
         {/* JS */}

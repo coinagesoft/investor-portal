@@ -6,6 +6,9 @@ import { usePathname } from "next/navigation";
 export default function Sidebar() {
 
     const pathname = usePathname();
+    const closeMobileMenu = () => {
+        document.documentElement.classList.remove("layout-menu-expanded");
+    };
 
     return (
 
@@ -21,6 +24,7 @@ export default function Sidebar() {
                 <Link
                     href="/dashboard"
                     className="app-brand-link d-flex align-items-center"
+                    onClick={closeMobileMenu}
                 >
 
                     <img
@@ -46,7 +50,7 @@ export default function Sidebar() {
 
                 <li className={`menu-item ${pathname === "/dashboard" ? "active" : ""}`}>
 
-                    <Link href="/dashboard" className="menu-link">
+                    <Link href="/dashboard" className="menu-link" onClick={closeMobileMenu}>
 
                         <i className="menu-icon tf-icons ri-home-smile-line"></i>
 
@@ -60,7 +64,7 @@ export default function Sidebar() {
 
                 <li className={`menu-item ${pathname === "/category" ? "active" : ""}`}>
 
-                    <Link href="/category" className="menu-link">
+                    <Link href="/category" className="menu-link" onClick={closeMobileMenu}>
 
                         <i className="menu-icon tf-icons ri-layout-2-line"></i>
 
@@ -74,7 +78,7 @@ export default function Sidebar() {
 
                 <li className={`menu-item ${pathname === "/folders" ? "active" : ""}`}>
 
-                    <Link href="/folders" className="menu-link">
+                    <Link href="/folders" className="menu-link" onClick={closeMobileMenu}>
 
                         <i className="menu-icon tf-icons ri-folder-line"></i>
 
@@ -88,7 +92,7 @@ export default function Sidebar() {
 
                 <li className={`menu-item ${pathname === "/files" ? "active" : ""}`}>
 
-                    <Link href="/files" className="menu-link">
+                    <Link href="/files" className="menu-link" onClick={closeMobileMenu}>
 
                         <i className="menu-icon tf-icons ri-file-list-line"></i>
 
