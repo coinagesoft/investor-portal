@@ -135,6 +135,9 @@ app.post(
 
         try {
 
+            console.log(req.body);
+            console.log(req.files);
+
             const folder = new Folder({
 
                 name: req.body.name,
@@ -144,7 +147,7 @@ app.post(
 
             await folder.save();
 
-            if (req.files.length > 0) {
+            if (req.files && req.files.length > 0) {
 
                 const filesData = req.files.map((file) => ({
 
@@ -168,6 +171,8 @@ app.post(
 
         } catch (error) {
 
+            console.log(error);
+
             res.status(500).json({
                 success: false,
                 message: error.message
@@ -177,7 +182,6 @@ app.post(
 
     }
 );
-
 // GET FOLDERS
 app.get("/folder", async (req, res) => {
 

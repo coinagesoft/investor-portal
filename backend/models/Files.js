@@ -1,16 +1,16 @@
-const mongoose = require("mongoose");
+  const mongoose = require("mongoose");
 
-const fileSchema = new mongoose.Schema({
+  const fileSchema = new mongoose.Schema({
 
-    title: String,
+      title: String,
 
-    fileUrl: String,
+      fileUrl: String,
 
-    folderId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Folder"
-    }
+      folderId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Folder"
+      }
 
-});
+  });
 
-module.exports = mongoose.model("File", fileSchema);
+  module.exports = mongoose.model("File", fileSchema);
