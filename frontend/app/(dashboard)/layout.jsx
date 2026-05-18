@@ -37,6 +37,11 @@ export default function RootLayout({ children }) {
           href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"
         />
 
+        <link
+          href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+          rel="stylesheet"
+        />
+
       </head>
 
       <body>
