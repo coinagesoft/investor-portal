@@ -8,44 +8,56 @@ export default function Login() {
     const [password, setPassword] = useState("");
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
 
-        const res = await fetch(
-            "/api/auth/login",
-            {
-                method: "POST",
+        try {
 
-                credentials: "include",
+            const res = await fetch(
+                "/api/auth/login",
+                {
+                    method: "POST",
 
-                headers: {
-                    "Content-Type":
-                        "application/json",
-                },
+                    credentials: "include",
 
-                body: JSON.stringify({
-                    email,
-                    password,
-                }),
-            }
-        );
+                    headers: {
+                        "Content-Type":
+                            "application/json",
+                    },
 
-        console.log(data);
-
-        if (data.success) {
-
-            localStorage.setItem(
-                "loggedIn",
-                "true"
+                    body: JSON.stringify({
+                        email,
+                        password,
+                    }),
+                }
             );
 
-            window.location.href =
-                "/dashboard";
+            const data =
+                await res.json();
 
-        } else {
+            console.log(data);
 
-            alert(data.message);
+            if (data.success) {
+
+                setTimeout(() => {
+
+                    window.location.href =
+                        "/dashboard";
+
+                }, 500);
+
+            } else {
+
+                alert(data.message);
+            }
+
+        } catch (error) {
+
+            console.log(error);
+
+            alert("Login failed");
         }
-    }
+    };
 
     return (
         <div className="position-relative">
@@ -156,7 +168,7 @@ export default function Login() {
                                         </label>
                                     </div>
                                 </div>
-                                <button className="btn btn-primary d-grid w-100">Sign In</button>
+                                <button type="submit" className="btn btn-primary d-grid w-100">Sign In</button>
                             </form>
 
                             {/* <p className="text-center">
