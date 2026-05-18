@@ -5,8 +5,6 @@ import axios from "axios";
 
 import AddCategoryModal from "../../../component/AddCategoryModal";
 
-
-
 export default function Category() {
 
     const [showModel, setShowModel] = useState(false);
@@ -21,7 +19,7 @@ export default function Category() {
                 `${process.env.NEXT_PUBLIC_API_URL}/category`
             );
 
-           setCategories(response.data.data);
+            setCategories(response.data.data);
 
         } catch (error) {
 
@@ -35,11 +33,9 @@ export default function Category() {
 
         try {
 
-            const response = await axios.delete(
+            await axios.delete(
                 `${process.env.NEXT_PUBLIC_API_URL}/category/${id}`
             );
-
-            console.log(response.data);
 
             setCategories((prev) =>
                 prev.filter((item) => item._id !== id)
@@ -54,20 +50,41 @@ export default function Category() {
     };
 
     useEffect(() => {
-    getCategories();
-}, []);
+        getCategories();
+    }, []);
 
-console.log(categories);
+    // Different colors for cards
+    const colors = [
+        "primary",
+        "success",
+        "danger",
+        "warning",
+        "info",
+        "secondary",
+    ];
 
-return (
+    // Different icons
+    const icons = [
+        "ri-gallery-view-2",
+        "ri-image-line",
+        "ri-folder-image-line",
+        "ri-camera-lens-line",
+        "ri-slideshow-line",
+        "ri-landscape-line",
+    ];
+
+    return (
 
         <div className="container-fluid px-0">
 
-            <div className="card p-5">
+            <div className="card p-4">
 
-                <div className="d-flex justify-content-between align-items-center mb-3">
+                {/* Header */}
+                <div className="d-flex justify-content-between align-items-center mb-4">
 
-                    <h4>All Category</h4>
+                    <h3 className="mb-0 fw-bold">
+                        All Categories
+                    </h3>
 
                     <button
                         className="btn btn-primary"
@@ -78,6 +95,7 @@ return (
 
                 </div>
 
+                {/* Modal */}
                 {showModel && (
 
                     <AddCategoryModal
@@ -87,60 +105,90 @@ return (
 
                 )}
 
-                <div className="table-responsive">
+                {/* Category Cards */}
+                <div className="row">
 
-                    <table className="table table-striped">
+                    {Array.isArray(categories) &&
+                        categories.map((item, index) => {
 
-                        <thead className="table-light">
+                            const color = colors[index % colors.length];
+                            const icon = icons[index % icons.length];
 
-                            <tr>
-                                <th>Sr.</th>
-                                <th>Name</th>
-                                <th></th>
-                                <th></th>
-                                <th>Action</th>
-                            </tr>
+                            return (
 
-                        </thead>
+                                <div
+                                    className="col-xl-3 col-lg-4 col-md-6 mb-4"
+                                    key={item._id}
+                                >
 
-                        <tbody>
+                                    <div
+                                        className="card shadow-sm border-0 h-100"
+                                        style={{
+                                            borderRadius: "16px",
+                                        }}
+                                    >
 
-                            {Array.isArray(categories) &&
-                                categories.map((item, index) => (
+                                        <div className="card-body">
 
-                                    <tr key={item._id}>
+                                            <div className="d-flex justify-content-between align-items-start">
 
-                                        <td>{index + 1}</td>
+                                                {/* Left Side */}
+                                                <div className="d-flex align-items-center">
 
-                                        <td>{item.name}</td>
+                                                    <div className="avatar me-3">
 
-                                        <td></td>
-                                        <td></td>
+                                                        <div
+                                                            className={`avatar-initial bg-${color} bg-opacity-10 text-${color} rounded-3 d-flex align-items-center justify-content-center`}
+                                                            style={{
+                                                                width: "60px",
+                                                                height: "60px",
+                                                                fontSize: "28px",
+                                                            }}
+                                                        >
+                                                            <i className={icon}></i>
+                                                        </div>
 
-                                        <td>
+                                                    </div>
 
-                                            <button
-                                                className="btn btn-sm btn-outline-danger"
-                                                onClick={() => {
+                                                    <div>
 
-                                                    if (window.confirm("Delete this category?")) {
-                                                        deleteCategory(item._id)
-                                                    }
+                                                        <h5 className="mb-1 fw-semibold">
+                                                            {item.name}
+                                                        </h5>
 
-                                                }}
-                                            >
-                                                <i className="ri-delete-bin-line"></i>
-                                            </button>
+                                                        <small className="text-muted">
+                                                            Category #{index + 1}
+                                                        </small>
 
-                                        </td>
+                                                    </div>
 
-                                    </tr>
+                                                </div>
 
-                                ))}
+                                                {/* Delete Button */}
+                                                <button
+                                                    className="btn btn-sm btn-outline-danger"
+                                                    onClick={() => {
 
-                        </tbody>
+                                                        if (window.confirm("Delete this category?")) {
+                                                            deleteCategory(item._id)
+                                                        }
 
-                    </table>
+                                                    }}
+                                                >
+                                                    <i className="ri-delete-bin-line"></i>
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            );
+
+                        })}
 
                 </div>
 
@@ -149,4 +197,5 @@ return (
         </div>
 
     );
+
 }
