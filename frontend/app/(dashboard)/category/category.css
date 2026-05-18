@@ -1,0 +1,4 @@
+.category-card:hover .category-actions {
+    opacity: 1;
+    transform: translateY(0);
+}

@@ -70,7 +70,7 @@ export default function Category() {
         <div className="container-fluid px-0 category-page">
 
             {/* Header */}
-            <div className="category-header d-flex align-items-center justify-content-between mb-4">
+            <div className="category-header d-flex align-items-center justify-content-between mb-2">
 
                 <div>
 
@@ -162,19 +162,28 @@ export default function Category() {
                                                     </div>
 
                                                     {/* Delete Button */}
-                                                    <button
-                                                        className="btn btn-sm btn-outline-danger delete-btn"
-                                                        onClick={() => {
+                                                    <div className="category-actions">
 
-                                                            if (window.confirm("Delete this category?")) {
-                                                                deleteCategory(item._id)
-                                                            }
+                                                        <button
+                                                            className="btn btn-sm btn-light border"
+                                                        >
+                                                            <i className="ri-edit-line"></i>
+                                                        </button>
 
-                                                        }}
-                                                    >
-                                                        Delete
-                                                    </button>
+                                                        <button
+                                                            className="btn btn-sm btn-danger"
+                                                            onClick={() => {
 
+                                                                if (window.confirm("Delete this category?")) {
+                                                                    deleteCategory(item._id)
+                                                                }
+
+                                                            }}
+                                                        >
+                                                            <i className="ri-delete-bin-line"></i>
+                                                        </button>
+
+                                                    </div>
                                                 </div>
 
                                             </div>
