@@ -1,5 +1,5 @@
 .category-page {
-    padding: 10px 6px;
+    padding: 10px 8px;
 }
 
 /* Header */
@@ -7,7 +7,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
 }
 
 .category-title {
@@ -19,8 +19,8 @@
 
 .category-subtitle {
     color: #8b8b8b;
-    margin-bottom: 0;
     font-size: 16px;
+    margin-bottom: 0;
 }
 
 .add-category-btn {
@@ -37,8 +37,6 @@
     border-radius: 18px !important;
     box-shadow: 0 3px 14px rgba(0,0,0,0.05) !important;
     transition: 0.3s ease;
-    overflow: hidden;
-    background: #fff;
 }
 
 .category-card:hover {
@@ -52,43 +50,38 @@
 
 /* Avatar */
 .avatar-initial {
-    width: 66px;
-    height: 66px;
+    width: 62px;
+    height: 62px;
 
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-radius: 16px;
-
-    margin-right: 18px;
 }
 
-/* Icon */
-.category-main-icon {
-    font-size: 30px;
-    line-height: 1;
+/* Emoji Icon */
+.category-icon {
+    font-size: 28px;
 }
 
 /* Text */
 .category-name {
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
     color: #2f3b52;
-    margin-bottom: 0;
 }
 
 /* Delete Button */
 .delete-btn {
     opacity: 0;
     transition: 0.3s ease;
+    border-radius: 10px !important;
 }
 
 .category-card:hover .delete-btn {
     opacity: 1;
 }
 
-/* Icon Colors */
+/* Colors */
 .bg-label-primary {
     background: rgba(105, 108, 255, 0.16);
     color: #696cff;
