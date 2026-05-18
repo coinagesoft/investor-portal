@@ -12,8 +12,17 @@ export default function Login() {
 
         const res = await fetch("/api/auth/login", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password })
+
+            credentials: "include",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                email,
+                password
+            })
         });
 
         const data = await res.json();
@@ -92,7 +101,7 @@ export default function Login() {
                             <h4 className="mb-1">Welcome to UCAL 🚀</h4>
                             <p className="mb-5">Please sign-in to your account and start the adventure</p>
 
-                            <form id="formAuthentication" className="mb-5"  onSubmit={handleSubmit}>
+                            <form id="formAuthentication" className="mb-5" onSubmit={handleSubmit}>
                                 <div className="form-floating form-floating-outline mb-5">
                                     <input
                                         type="text"
@@ -100,7 +109,7 @@ export default function Login() {
                                         id="email"
                                         name="email"
                                         placeholder="Enter your email"
-                                        autoFocus 
+                                        autoFocus
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)} />
                                     <label htmlFor="email">Email</label>

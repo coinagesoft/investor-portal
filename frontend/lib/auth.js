@@ -33,7 +33,7 @@ export const cookieOptions = {
     process.env.NODE_ENV ===
     "production",
 
-  sameSite: "strict",
+  sameSite: "lax",
 
   maxAge:
     60 * 60 * 24 * 7,

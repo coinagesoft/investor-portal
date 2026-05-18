@@ -80,6 +80,7 @@ cookieStore.set(
       success: true,
       message:
         "Login successful",
+        redirect: "/dashboard",
     });
 
   }catch (error) {
