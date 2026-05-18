@@ -22,7 +22,7 @@ export default function Navbar() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
 
-    window.location.href = "/auth";
+    window.location.href = "/login";
   };
 
   return (
