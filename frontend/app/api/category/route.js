@@ -39,8 +39,7 @@ export async function GET() {
 
         await connectDB();
 
-        const categories = await Category.find();
-
+        const categories = await Category.find().sort({ createdAt: -1 });
         return NextResponse.json({
             success: true,
             data: categories
