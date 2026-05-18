@@ -18,12 +18,17 @@ export default function Navbar() {
     document.documentElement.classList.toggle("layout-menu-expanded");
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+ const handleLogout = async () => {
 
-    window.location.href = "/login";
-  };
+  await fetch("/api/auth/logout", {
+    method: "POST",
+  });
+
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+
+  window.location.href = "/login";
+};
 
   return (
     <nav
