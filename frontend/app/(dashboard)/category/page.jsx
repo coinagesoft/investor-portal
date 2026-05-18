@@ -128,9 +128,9 @@
                                                 <div className="d-flex align-items-center justify-content-between">
 
                                                     {/* Left */}
-                                                    <div className="d-flex align-items-center">
+                                                    <div className="d-flex align-items-center justidfy-content-center">
 
-                                                        <div className="avatar me-3">
+                                                        <div className="avatar me-4">
 
                                                             <div className={`avatar-initial bg-label-${color} rounded-3`}>
 
