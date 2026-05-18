@@ -67,103 +67,99 @@ export default function Category() {
 
     return (
 
-        <div className="container-fluid px-0">
+        <div className="container-fluid px-0 category-page">
 
-            <div className="category-wrapper">
+            {/* Header */}
+            <div className="category-header">
 
-                {/* Header */}
-                <div className="category-header">
+                <div>
 
-                    <div>
+                    <h2 className="category-title">
+                        All Categories
+                    </h2>
 
-                        <h2 className="category-title">
-                            All Categories
-                        </h2>
-
-                        <p className="category-subtitle">
-                            Manage your categories here
-                        </p>
-
-                    </div>
-
-                    <button
-                        className="btn btn-primary add-category-btn"
-                        onClick={() => setShowModel(true)}
-                    >
-                        + Add Category
-                    </button>
+                    <p className="category-subtitle">
+                        Manage your categories here
+                    </p>
 
                 </div>
 
-                {/* Modal */}
-                {showModel && (
+                <button
+                    className="btn btn-primary add-category-btn"
+                    onClick={() => setShowModel(true)}
+                >
+                    + Add Category
+                </button>
 
-                    <AddCategoryModal
-                        onClose={() => setShowModel(false)}
-                        refreshCategories={getCategories}
-                    />
+            </div>
 
-                )}
+            {/* Modal */}
+            {showModel && (
 
-                {/* Cards */}
-                <div className="row g-3">
+                <AddCategoryModal
+                    onClose={() => setShowModel(false)}
+                    refreshCategories={getCategories}
+                />
 
-                    {Array.isArray(categories) &&
-                        categories.map((item, index) => {
+            )}
 
-                            const color = colors[index % colors.length];
+            {/* Cards */}
+            <div className="row g-4">
 
-                            return (
+                {Array.isArray(categories) &&
+                    categories.map((item, index) => {
 
-                                <div
-                                    className="col-lg-3 col-sm-6"
-                                    key={item._id}
-                                >
+                        const color = colors[index % colors.length];
 
-                                    <div className="card category-card">
+                        return (
 
-                                        <div className="card-body">
+                            <div
+                                className="col-lg-3 col-sm-6"
+                                key={item._id}
+                            >
 
-                                            <div className="d-flex align-items-center justify-content-between">
+                                <div className="card category-card">
 
-                                                {/* Left */}
-                                                <div className="d-flex align-items-center">
+                                    <div className="card-body">
 
-                                                    <div className="avatar me-3">
+                                        <div className="d-flex align-items-center justify-content-between">
 
-                                                        <div className={`avatar-initial bg-label-${color} rounded-3`}>
+                                            {/* Left */}
+                                            <div className="d-flex align-items-center">
 
-                                                            <i className="ri-gallery-view-2-line"></i>
+                                                <div className="avatar me-3">
 
-                                                        </div>
+                                                    <div className={`avatar-initial bg-label-${color}`}>
 
-                                                    </div>
-
-                                                    <div className="card-info">
-
-                                                        <h6 className="mb-0 category-name">
-                                                            {item.name}
-                                                        </h6>
+                                                        <i className="ri-gallery-view-2-fill category-main-icon"></i>
 
                                                     </div>
 
                                                 </div>
 
-                                                {/* Delete */}
-                                                <button
-                                                    className="btn btn-sm btn-outline-danger delete-btn"
-                                                    onClick={() => {
+                                                <div className="card-info">
 
-                                                        if (window.confirm("Delete this category?")) {
-                                                            deleteCategory(item._id)
-                                                        }
+                                                    <h6 className="mb-0 category-name">
+                                                        {item.name}
+                                                    </h6>
 
-                                                    }}
-                                                >
-                                                    <i className="ri-delete-bin-line"></i>
-                                                </button>
+                                                </div>
 
                                             </div>
+
+                                            {/* Delete */}
+                                            <button
+                                                className="btn btn-sm btn-outline-danger delete-btn"
+                                                onClick={() => {
+
+                                                    if (window.confirm("Delete this category?")) {
+                                                        deleteCategory(item._id)
+                                                    }
+
+                                                }}
+                                            >
+                                                <i className="ri-delete-bin-line"></i>
+                                            </button>
 
                                         </div>
 
@@ -171,11 +167,11 @@ export default function Category() {
 
                                 </div>
 
-                            );
+                            </div>
 
-                        })}
+                        );
 
-                </div>
+                    })}
 
             </div>
 
