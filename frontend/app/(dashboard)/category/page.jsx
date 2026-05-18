@@ -65,16 +65,6 @@ export default function Category() {
         "secondary",
     ];
 
-    // Icons
-    const icons = [
-        "ri-gallery-view-2-line",
-        "ri-image-line",
-        "ri-folder-image-line",
-        "ri-camera-lens-line",
-        "ri-slideshow-line",
-        "ri-landscape-line",
-    ];
-
     return (
 
         <div className="container-fluid px-0">
@@ -116,67 +106,62 @@ export default function Category() {
                 )}
 
                 {/* Cards */}
-                <div className="row">
+                <div className="row g-3">
 
                     {Array.isArray(categories) &&
                         categories.map((item, index) => {
 
                             const color = colors[index % colors.length];
-                            const icon = icons[index % icons.length];
 
                             return (
 
                                 <div
-                                    className="col-xl-3 col-lg-4 col-md-6 mb-4"
+                                    className="col-lg-3 col-sm-6"
                                     key={item._id}
                                 >
 
-                                    <div className="category-card">
+                                    <div className="card category-card">
 
-                                        {/* Actions */}
-                                        <div className="category-actions">
+                                        <div className="card-body">
 
-                                            {/* Edit */}
-                                            <button className="btn btn-light border">
-                                                <i className="ri-edit-line"></i>
-                                            </button>
+                                            <div className="d-flex align-items-center justify-content-between">
 
-                                            {/* Delete */}
-                                            <button
-                                                className="btn btn-danger"
-                                                onClick={() => {
+                                                {/* Left */}
+                                                <div className="d-flex align-items-center">
 
-                                                    if (window.confirm("Delete this category?")) {
-                                                        deleteCategory(item._id)
-                                                    }
+                                                    <div className="avatar me-3">
 
-                                                }}
-                                            >
-                                                <i className="ri-delete-bin-line"></i>
-                                            </button>
+                                                        <div className={`avatar-initial bg-label-${color} rounded-3`}>
 
-                                        </div>
+                                                            <i className="ri-gallery-view-2-line"></i>
 
-                                        {/* Content */}
-                                        <div className="d-flex align-items-center">
+                                                        </div>
 
-                                            {/* Icon */}
-                                            <div
-                                                className={`category-icon bg-${color} bg-opacity-10 text-${color}`}
-                                            >
-                                                <i className={icon}></i>
-                                            </div>
+                                                    </div>
 
-                                            {/* Text */}
-                                            <div>
+                                                    <div className="card-info">
 
-                                                <h5 className="category-name">
-                                                    {item.name}
-                                                </h5>
+                                                        <h6 className="mb-0 category-name">
+                                                            {item.name}
+                                                        </h6>
 
-                                                <small className="text-muted">
-                                                    Category #{index + 1}
-                                                </small>
+                                                    </div>
+
+                                                </div>
+
+                                                {/* Delete */}
+                                                <button
+                                                    className="btn btn-sm btn-outline-danger delete-btn"
+                                                    onClick={() => {
+
+                                                        if (window.confirm("Delete this category?")) {
+                                                            deleteCategory(item._id)
+                                                        }
+
+                                                    }}
+                                                >
+                                                    <i className="ri-delete-bin-line"></i>
+                                                </button>
 
                                             </div>
 
