@@ -70,7 +70,7 @@ export default function Category() {
         <div className="container-fluid px-0 category-page">
 
             {/* Header */}
-            <div className="card category-header d-flex align-items-center justify-content-between mb-2">
+            <div className="category-header d-flex align-items-center justify-content-between mb-2">
 
                 <div>
 
@@ -108,7 +108,7 @@ export default function Category() {
 
                 <div className="container-xxl flex-grow-1 container-p-y">
 
-                    <div className="row gy-4">
+                    <div className="row gy-5">
 
                         {Array.isArray(categories) &&
                             categories.map((item, index) => {
