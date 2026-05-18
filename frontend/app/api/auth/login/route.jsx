@@ -7,7 +7,7 @@ import {
   cookieOptions,
 } from "@/lib/auth";
 
-import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
 export async function POST(req) {
 
@@ -20,7 +20,6 @@ export async function POST(req) {
       password,
     } = await req.json();
 
-    // Find user
     const user =
       await User.findOne({
         email,
@@ -28,20 +27,17 @@ export async function POST(req) {
 
     if (!user) {
 
-      return Response.json(
+      return NextResponse.json(
         {
           success: false,
-          message:
-            "Invalid email",
+          message: "Invalid email",
         },
-
         {
           status: 401,
         }
       );
     }
 
-    // Check password
     const isMatch =
       await user.comparePassword(
         password
@@ -49,47 +45,40 @@ export async function POST(req) {
 
     if (!isMatch) {
 
-      return Response.json(
+      return NextResponse.json(
         {
           success: false,
-          message:
-            "Invalid password",
+          message: "Invalid password",
         },
-
         {
           status: 401,
         }
       );
     }
 
-    // Create token
     const token =
       createToken(user);
 
-    // Store cookie
-    const cookieStore =
-      await cookies();
+    const response =
+      NextResponse.json({
+        success: true,
+        message:
+          "Login successful",
+      });
 
-    cookieStore.set(
+    response.cookies.set(
       "token",
       token,
       cookieOptions
     );
 
-    console.log("LOGIN SUCCESS");
-
-    return Response.json({
-      success: true,
-      message: "Login successful",
-      redirect: "/dashboard",
-    });
-
+    return response;
 
   } catch (error) {
 
     console.log(error);
 
-    return Response.json({
+    return NextResponse.json({
       success: false,
       message: error.message,
     });
