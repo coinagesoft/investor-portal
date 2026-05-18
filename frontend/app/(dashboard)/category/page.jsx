@@ -70,7 +70,7 @@ export default function Category() {
         <div className="container-fluid px-0 category-page">
 
             {/* Header */}
-            <div className="category-header">
+            <div className="category-header d-flex align-items-center justify-content-between mb-4">
 
                 <div>
 
@@ -136,7 +136,7 @@ export default function Category() {
                                                             <div className={`avatar-initial bg-label-${color} rounded-3`}>
 
                                                                 <span className="category-icon">
-                                                                    📁
+                                                                    <i class="ri-gallery-view-2"></i>
                                                                 </span>
 
                                                             </div>
