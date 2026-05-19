@@ -71,17 +71,17 @@ export default function Files() {
                             Manage uploaded files here
                         </p>
 
-                        
+
 
                     </div>
                     <button
-                            className="btn btn-primary"
-                            onClick={() => setShowModal(true)}
-                        >
+                        className="btn btn-primary"
+                        onClick={() => setShowModal(true)}
+                    >
 
-                            + Add Files
+                        + Add Files
 
-                        </button>
+                    </button>
 
                 </div>
 
@@ -198,30 +198,41 @@ export default function Files() {
                                     </div>
 
                                     {/* Category and Folder */}
-                                    <div className="mt-3 d-flex justify-content-start align-items-center gap-2 flex-wrap">
+                                    <div className="mt-3 d-flex align-items-start gap-4">
 
-                                        <small className="text-muted d-block mb-1">
+                                        {/* Category */}
+                                        <div>
 
-                                            Category
+                                            <small className="text-muted d-block mb-1">
 
-                                        </small>
+                                                Category
 
-                                        <span className={`badge bg-label-${color}`}>
+                                            </small>
 
-                                            {item.folderId?.categoryId?.name}
+                                            <span className={`badge bg-label-primary`}>
 
-                                        </span>
-                                        <small className="text-muted d-block mb-1">
+                                                {item.folderId?.categoryId?.name}
 
-                                            Folder
+                                            </span>
 
-                                        </small>
+                                        </div>
 
-                                        <span className={`badge bg-label-${color}`}>
+                                        {/* Folder */}
+                                        <div>
 
-                                            {item.folderId?.name}
+                                            <small className="text-muted d-block mb-1">
 
-                                        </span>
+                                                Folder
+
+                                            </small>
+
+                                            <span className={`badge bg-label-info`}>
+
+                                                {item.folderId?.name}
+
+                                            </span>
+
+                                        </div>
 
                                     </div>
 
