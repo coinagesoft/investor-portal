@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import AddFolderModal from "../../../component/AddFolderModal";
+import EditFolderModal from "../../../component/EditFolderModal";
+
 import "./folder.css";
 import { useRouter } from "next/navigation";
 
@@ -15,6 +17,9 @@ export default function Folders() {
 
     const [openFolder, setOpenFolder] = useState(null);
 
+    const [editModal, setEditModal] = useState(false);
+
+    const [selectedFolder, setSelectedFolder] = useState(null);
 
     const router = useRouter();
 
@@ -102,6 +107,16 @@ export default function Folders() {
 
             )}
 
+            {editModal && (
+
+                <EditFolderModal
+                    folder={selectedFolder}
+                    onClose={() => setEditModal(false)}
+                    refreshFolders={getFolders}
+                />
+
+            )}
+
             {/* Folder Cards */}
             <div className="row">
 
@@ -177,6 +192,10 @@ export default function Folders() {
                                                 onClick={(e) => {
 
                                                     e.stopPropagation();
+
+                                                    setSelectedFolder(item);
+
+                                                    setEditModal(true);
 
                                                 }}
                                             >

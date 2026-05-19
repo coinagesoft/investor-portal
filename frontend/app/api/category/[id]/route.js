@@ -2,6 +2,7 @@ import connectDB from "@/lib/db";
 import Category from "@/models/Category";
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
+import { errorResponse, json } from "@/lib/api-response";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -50,6 +51,39 @@ export async function DELETE(req, context) {
             },
             { status: 500 }
         );
+
+    }
+
+}
+
+
+export async function PUT(request, { params }) {
+
+    try {
+
+        await connectDB();
+
+        const body = await request.json();
+
+        const updatedCategory =
+            await Category.findByIdAndUpdate(
+                params.id,
+                {
+                    name: body.name
+                },
+                {
+                    new: true
+                }
+            );
+
+        return json({
+            success: true,
+            data: updatedCategory
+        });
+
+    } catch (error) {
+
+        return errorResponse(error);
 
     }
 

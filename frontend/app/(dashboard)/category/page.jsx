@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import AddCategoryModal from "../../../component/AddCategoryModal";
+import EditCategoryModal from "../../../component/EditCategoryModal";
 
 import "./category.css";
 
@@ -12,6 +13,10 @@ export default function Category() {
     const [showModel, setShowModel] = useState(false);
 
     const [categories, setCategories] = useState([]);
+
+    const [editModal, setEditModal] = useState(false);
+
+    const [selectedCategory, setSelectedCategory] = useState(null);
 
     const getCategories = async () => {
 
@@ -110,6 +115,16 @@ export default function Category() {
 
             )}
 
+            {editModal && (
+
+                <EditCategoryModal
+                    category={selectedCategory}
+                    onClose={() => setEditModal(false)}
+                    refreshCategories={getCategories}
+                />
+
+            )}
+
             {/* Cards */}
             <div className="content-wrapper px-0">
 
@@ -174,6 +189,13 @@ export default function Category() {
                                                     {/* Edit */}
                                                     <button
                                                         className="btn btn-sm btn-icon btn-text-secondary edit-btn"
+                                                        onClick={() => {
+
+                                                            setSelectedCategory(item);
+
+                                                            setEditModal(true);
+
+                                                        }}
                                                     >
                                                         <i className="ri-edit-line"></i>
                                                     </button>
