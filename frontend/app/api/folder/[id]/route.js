@@ -27,11 +27,13 @@ export async function PUT(request, { params }) {
 
         await connectDB();
 
+        const { id } = await params;
+
         const body = await request.json();
 
         const updatedFolder =
             await Folder.findByIdAndUpdate(
-                params.id,
+                id,
                 {
                     name: body.name
                 },
