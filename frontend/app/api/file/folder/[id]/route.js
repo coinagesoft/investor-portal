@@ -16,6 +16,11 @@ export async function GET(request, context) {
 
         const files = await File.find({
             folderId: id
+        }).populate({
+            path: "folderId",
+            populate: {
+                path: "categoryId"
+            }
         });
 
         const folder = await Folder.findById(id);

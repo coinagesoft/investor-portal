@@ -22,6 +22,9 @@ export default function FolderFilesPage() {
     const getFiles = async () => {
 
         try {
+            if (!id) {
+                return;
+            }
 
             const response = await axios.get(
                 `/api/file/folder/${id}`
@@ -39,9 +42,33 @@ export default function FolderFilesPage() {
 
     };
 
+    const deleteFile = async (fileId) => {
+
+        try {
+
+            const response = await axios.delete(`/api/file/${fileId}`);
+
+            if (!response.data.success) {
+                throw new Error(response.data.message || "File was not deleted");
+            }
+
+            setFiles((prev) =>
+                prev.filter((item) => item._id !== fileId)
+            );
+
+        } catch (error) {
+
+            console.log(error);
+
+        }
+
+    };
+
     useEffect(() => {
 
-        getFiles();
+        if (id) {
+            getFiles();
+        }
 
     }, [id]);
 
