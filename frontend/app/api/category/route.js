@@ -6,8 +6,6 @@ import { errorResponse, json } from "@/lib/api-response";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export const runtime = "nodejs";
-
 export async function POST(request) {
 
     try {
@@ -50,7 +48,6 @@ export async function GET() {
                 data: categories
             },
             {
-                status: 200,
                 headers: {
                     "Cache-Control": "no-store"
                 }
