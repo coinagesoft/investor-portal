@@ -59,11 +59,22 @@ export default function Folders() {
 
         <div className="container-fluid px-0">
 
-            <div className="card p-5">
+            {/* Header */}
+            <div className="card p-4 mb-4">
 
-                <div className="d-flex justify-content-between align-items-center mb-3">
+                <div className="d-flex justify-content-between align-items-center">
 
-                    <h4>All Folders</h4>
+                    <div>
+
+                        <h4 className="mb-1">
+                            All Folders
+                        </h4>
+
+                        <p className="text-muted mb-0">
+                            Manage your folders here
+                        </p>
+
+                    </div>
 
                     <button
                         className="btn btn-primary"
@@ -74,158 +85,167 @@ export default function Folders() {
 
                 </div>
 
-                {showModal && (
+            </div>
 
-                    <AddFolderModal
-                        onClose={() => setShowModal(false)}
-                        refreshFolders={getFolders}
-                    />
+            {/* Modal */}
+            {showModal && (
 
-                )}
+                <AddFolderModal
+                    onClose={() => setShowModal(false)}
+                    refreshFolders={getFolders}
+                />
 
-                <div className="table-responsive">
+            )}
 
-                    <table className="table table-striped">
+            {/* Folder Cards */}
+            <div className="row">
 
-                        <thead className="table-light">
+                {folders.map((item, index) => (
 
-                            <tr>
+                    <div
+                        className="col-sm-6 col-lg-3 mb-4"
+                        key={item._id}
+                    >
 
-                                <th>Sr.</th>
-                                <th>Folder Name</th>
-                                <th>Category</th>
-                                <th>Action</th>
+                        <div
+                            className="card card-border-shadow-primary h-100"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
 
-                            </tr>
+                                if (openFolder === item._id) {
 
-                        </thead>
+                                    setOpenFolder(null);
 
-                        <tbody>
+                                } else {
 
-                            {folders.map((item, index) => (
+                                    setOpenFolder(item._id);
 
-                                <>
+                                }
 
-                                    <tr key={item._id}
-                                        style={{ cursor: "pointer" }}
-                                        onClick={() => {
-                                            if (openFolder === item._id) {
-                                                setOpenFolder(null);
-                                            } else {
-                                                setOpenFolder(item._id);
+                            }}
+                        >
+
+                            <div className="card-body">
+
+                                {/* Top */}
+                                <div className="d-flex align-items-center justify-content-between mb-3">
+
+                                    <div className="d-flex align-items-center">
+
+                                        <div className="avatar me-3">
+
+                                            <span className="avatar-initial rounded-3 bg-label-primary">
+
+                                                <i className="ri-folder-2-line ri-24px"></i>
+
+                                            </span>
+
+                                        </div>
+
+                                        <h5 className="mb-0">
+
+                                            {index + 1}
+
+                                        </h5>
+
+                                    </div>
+
+                                    <button
+                                        className="btn btn-sm btn-icon btn-text-danger"
+                                        onClick={(e) => {
+
+                                            e.stopPropagation();
+
+                                            if (window.confirm("Delete this folder?")) {
+
+                                                deleteFolder(item._id);
+
                                             }
+
                                         }}
                                     >
 
-                                        <td>{index + 1}</td>
+                                        <i className="ri-delete-bin-line"></i>
 
-                                        <td>
+                                    </button>
 
-                                            <div className="d-flex align-items-center gap-2">
+                                </div>
 
-                                                <i
-                                                    className={
-                                                        openFolder === item._id
-                                                            ? "ri-arrow-down-s-line"
-                                                            : "ri-arrow-right-s-line"
-                                                    }
-                                                ></i>
+                                {/* Folder Name */}
+                                <h6 className="mb-1 fw-semibold">
 
-                                                {item.name}
+                                    {item.name}
 
-                                            </div>
+                                </h6>
 
-                                        </td>
+                                {/* Category */}
+                                <p className="mb-0 text-muted">
 
-                                        <td>{item.categoryId?.name}</td>
+                                    {item.categoryId?.name}
 
-                                        <td>
+                                </p>
 
-                                            <button
-                                                className="btn btn-sm btn-outline-danger"
-                                                onClick={() => {
+                                {/* Files Section */}
+                                {openFolder === item._id && (
 
-                                                    if (window.confirm("Delete this folder?")) {
+                                    <div className="mt-4">
 
-                                                        deleteFolder(item._id)
+                                        <hr />
 
-                                                    }
+                                        <h6 className="mb-3">
+                                            Folder Files
+                                        </h6>
 
-                                                }}
-                                            >
-                                                <i className="ri-delete-bin-line"></i>
-                                            </button>
+                                        {item.files?.length > 0 ? (
 
-                                        </td>
+                                            item.files.map((file) => (
 
-                                    </tr>
+                                                <div
+                                                    key={file._id}
+                                                    className="border rounded p-2 mb-2 d-flex justify-content-between align-items-center"
+                                                >
 
-                                    {openFolder === item._id && (
+                                                    <div className="d-flex align-items-center">
 
-                                        <tr>
+                                                        <i className="ri-file-pdf-line text-danger me-2"></i>
 
-                                            <td colSpan="4">
+                                                        <span>
+                                                            {file.title}
+                                                        </span>
 
-                                                <div className="p-3 bg-light rounded">
+                                                    </div>
 
-                                                    <h6 className="mb-3">
-                                                        Uploaded PDFs
-                                                    </h6>
-
-                                                    {item.files?.length > 0 ? (
-
-                                                        item.files.map((file) => (
-
-                                                            <div
-                                                                key={file._id}
-                                                                className="d-flex justify-content-between align-items-center border rounded p-2 mb-2"
-                                                            >
-
-                                                                <div>
-
-                                                                    <i className="ri-file-pdf-line text-danger me-2"></i>
-
-                                                                    {file.title}
-
-                                                                </div>
-
-                                                                <a
-                                                                    href={file.fileUrl}
-                                                                    target="_blank"
-                                                                    className="btn btn-sm btn-primary"
-                                                                >
-                                                                    View
-                                                                </a>
-
-                                                            </div>
-
-                                                        ))
-
-                                                    ) : (
-
-                                                        <p className="mb-0">
-                                                            No PDFs uploaded
-                                                        </p>
-
-                                                    )}
+                                                    <a
+                                                        href={file.fileUrl}
+                                                        target="_blank"
+                                                        className="btn btn-sm btn-primary"
+                                                    >
+                                                        View
+                                                    </a>
 
                                                 </div>
 
-                                            </td>
+                                            ))
 
-                                        </tr>
+                                        ) : (
 
-                                    )}
+                                            <p className="text-muted mb-0">
+                                                No files uploaded
+                                            </p>
 
-                                </>
+                                        )}
 
-                            ))}
+                                    </div>
 
-                        </tbody>
+                                )}
 
-                    </table>
+                            </div>
 
-                </div>
+                        </div>
+
+                    </div>
+
+                ))}
 
             </div>
 
