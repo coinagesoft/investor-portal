@@ -141,9 +141,7 @@ export default function FolderFilesPage() {
                                                     whiteSpace: "normal",
                                                     lineHeight: "1.4"
                                                 }}>
-
                                                     {item.title}
-
                                                 </h6>
 
                                                 {/* <p className="mb-0 text-muted small">
