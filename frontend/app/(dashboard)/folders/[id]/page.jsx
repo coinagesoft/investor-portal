@@ -92,48 +92,155 @@ export default function FolderFilesPage() {
             )}
 
             {/* Files */}
-            <div className="row">
+             <div className="row">
 
-                {files.map((file) => (
+                {files.map((item, index) => {
 
-                    <div
-                        className="col-md-3 mb-4"
-                        key={file._id}
-                    >
+                    const colors = [
+                        "primary",
+                        "success",
+                        "danger",
+                        "warning",
+                        "info",
+                        "secondary",
+                    ];
 
-                        <div className="card h-100">
+                    const color = colors[index % colors.length];
 
-                            <div className="card-body">
+                    return (
 
-                                <div className="d-flex align-items-center mb-3">
+                        <div
+                            className="col-sm-6 col-lg-3 mb-4"
+                            key={item._id}
+                        >
 
-                                    <i className="ri-file-pdf-line text-danger ri-24px me-2"></i>
+                            <div className={`card card-border-shadow-${color} h-100 file-card`}>
 
-                                    <div>
+                                <div className="card-body">
 
-                                        <h6 className="mb-0">
-                                            {file.title}
-                                        </h6>
+                                    {/* Top */}
+                                    <div className="d-flex align-items-start justify-content-between mb-3">
+
+                                        {/* File Info */}
+                                        <div className="d-flex align-items-center">
+
+                                            <div className="avatar me-3">
+
+                                                <span className={`avatar-initial rounded-3 bg-label-${color}`}>
+
+                                                    <i className="ri-file-pdf-line ri-24px"></i>
+
+                                                </span>
+
+                                            </div>
+
+                                            <div>
+
+                                                <h6 className="mb-1 fw-semibold text-break" style={{
+                                                    wordBreak: "break-word",
+                                                    whiteSpace: "normal",
+                                                    lineHeight: "1.4"
+                                                }}>
+
+                                                    {item.title}
+
+                                                </h6>
+
+                                                {/* <p className="mb-0 text-muted small">
+
+                                                {item.folderId?.name}
+
+                                            </p> */}
+
+                                            </div>
+
+                                        </div>
+
+                                        {/* Hover Actions */}
+                                        <div className="file-actions">
+
+                                            {/* View */}
+                                            <a
+                                                href={getFilePath(item)}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="btn btn-sm btn-icon btn-text-primary"
+                                            >
+
+                                                <i className="ri-eye-line"></i>
+
+                                            </a>
+
+                                            {/* Delete */}
+                                            <button
+                                                className="btn btn-sm btn-icon btn-text-danger"
+                                                onClick={() => {
+
+                                                    if (window.confirm("Delete this file?")) {
+
+                                                        deleteFile(item._id);
+
+                                                    }
+
+                                                }}
+                                            >
+
+                                                <i className="ri-delete-bin-line"></i>
+
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+
+                                    {/* Category and Folder */}
+                                    <div className="mt-3 d-flex align-items-start gap-4">
+
+                                        {/* Category */}
+                                        <div>
+
+                                            <small className="text-muted d-block mb-1">
+
+                                                Category
+
+                                            </small>
+
+                                            <span className={`badge bg-label-primary`}>
+
+                                                {item.folderId?.categoryId?.name}
+
+                                            </span>
+
+                                        </div>
+
+                                        {/* Folder */}
+                                        <div>
+
+                                            <small className="text-muted d-block mb-1">
+
+                                                Folder
+
+                                            </small>
+
+                                            <span className={`badge bg-label-info`}>
+
+                                                {item.folderId?.name}
+
+                                            </span>
+
+                                        </div>
 
                                     </div>
 
                                 </div>
 
-                                <a
-                                    href={getFilePath(file)}
-                                    target="_blank"
-                                    className="btn btn-primary btn-sm"
-                                >
-                                    View File
-                                </a>
-
                             </div>
 
                         </div>
 
-                    </div>
+                    );
 
-                ))}
+                })}
 
             </div>
 
