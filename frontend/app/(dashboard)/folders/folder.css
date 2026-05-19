@@ -1,0 +1,33 @@
+/* Folder Card */
+.folder-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.folder-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Actions Hidden */
+.folder-actions {
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-5px);
+
+    transition: all 0.25s ease;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Show On Hover */
+.folder-card:hover .folder-actions {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+}
