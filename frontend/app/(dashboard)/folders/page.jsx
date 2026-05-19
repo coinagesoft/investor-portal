@@ -5,6 +5,7 @@ import axios from "axios";
 
 import AddFolderModal from "../../../component/AddFolderModal";
 import "./folder.css";
+import { useRouter } from "next/navigation";
 
 export default function Folders() {
 
@@ -13,6 +14,10 @@ export default function Folders() {
     const [folders, setFolders] = useState([]);
 
     const [openFolder, setOpenFolder] = useState(null);
+
+    const [openFolder, setOpenFolder] = useState(null);
+
+    const router = useRouter();
 
     const getFolders = async () => {
 
@@ -124,17 +129,7 @@ export default function Folders() {
                                 className={`card card-border-shadow-${color} h-100 folder-card`}
                                 style={{ cursor: "pointer" }}
                                 onClick={() => {
-
-                                    if (openFolder === item._id) {
-
-                                        setOpenFolder(null);
-
-                                    } else {
-
-                                        setOpenFolder(item._id);
-
-                                    }
-
+                                    router.push(`/dashboard/folders/${item._id}`);
                                 }}
                             >
 
