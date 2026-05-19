@@ -61,7 +61,7 @@ export default function Files() {
 
                 <div className="d-flex justify-content-between align-items-center">
 
-                    <div>
+                    <div >
 
                         <h4 className="mb-1">
                             All Files
@@ -71,7 +71,10 @@ export default function Files() {
                             Manage uploaded files here
                         </p>
 
-                        <button
+                        
+
+                    </div>
+                    <button
                             className="btn btn-primary"
                             onClick={() => setShowModal(true)}
                         >
@@ -79,8 +82,6 @@ export default function Files() {
                             + Add Files
 
                         </button>
-
-                    </div>
 
                 </div>
 
@@ -196,8 +197,8 @@ export default function Files() {
 
                                     </div>
 
-                                    {/* Category */}
-                                    <div className="mt-3">
+                                    {/* Category and Folder */}
+                                    <div className="mt-3 d-flex flex-column gap-2">
 
                                         <small className="text-muted d-block mb-1">
 
@@ -212,7 +213,7 @@ export default function Files() {
                                         </span>
                                         <small className="text-muted d-block mb-1">
 
-                                            Category
+                                            Folder
 
                                         </small>
 
