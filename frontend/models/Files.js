@@ -13,9 +13,9 @@ const fileSchema = new mongoose.Schema(
             required: true
         },
 
-        fileName: String,
+        fileUrl: String,
 
-        filePath: String,
+        publicId: String,
 
         fileType: String,
 

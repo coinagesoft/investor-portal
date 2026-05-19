@@ -77,7 +77,7 @@ export default function AddFilesModal({
             });
 
             await axios.post(
-                "/api/files",
+                "/api/file",
                 formData
             );
 

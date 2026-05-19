@@ -166,7 +166,7 @@ export default function Files() {
 
                                             {/* View */}
                                             <a
-                                                href={item.filePath}
+                                                href={item.fileUrl}
                                                 target="_blank"
                                                 className="btn btn-sm btn-icon btn-text-primary"
                                             >

@@ -1,9 +1,9 @@
 import connectDB from "@/lib/db";
 import { errorResponse, json } from "@/lib/api-response";
+
 import File from "@/models/Files";
 
-import fs from "fs";
-import path from "path";
+import cloudinary from "@/lib/cloudinary";
 
 export const runtime = "nodejs";
 
@@ -23,20 +23,15 @@ export async function DELETE(_request, { params }) {
 
         }
 
-        // Physical file path
-        const fullPath = path.join(
-            process.cwd(),
-            file.filePath
+        // Delete Cloudinary File
+        await cloudinary.uploader.destroy(
+            file.publicId,
+            {
+                resource_type: "raw"
+            }
         );
 
-        // Delete physical file
-        if (fs.existsSync(fullPath)) {
-
-            fs.unlinkSync(fullPath);
-
-        }
-
-        // Delete DB record
+        // Delete DB Entry
         await File.findByIdAndDelete(id);
 
         return json({
