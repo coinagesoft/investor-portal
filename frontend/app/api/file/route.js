@@ -73,7 +73,7 @@ export async function POST(request) {
                 dataURI,
                 {
                     folder: folder.name,
-                    resource_type: "auto"
+                    resource_type: "raw"
                 }
             );
 
