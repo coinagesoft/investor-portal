@@ -1,7 +1,7 @@
 import connectDB from "@/lib/db";
 import { errorResponse, json } from "@/lib/api-response";
 import Folder from "@/models/Folder";
-import { errorResponse, json } from "@/lib/api-response";
+
 
 export const runtime = "nodejs";
 
