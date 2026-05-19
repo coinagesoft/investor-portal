@@ -240,7 +240,7 @@ export default function Dashboard() {
 
             {/* RECENT FILES */}
 
-            <div className="card">
+            <div className="">
 
                 <div className="card-body">
 
