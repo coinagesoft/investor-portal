@@ -198,7 +198,7 @@ export default function Files() {
                                     </div>
 
                                     {/* Category and Folder */}
-                                    <div className="mt-3 d-flex flex-column gap-2">
+                                    <div className="mt-3 d-flex justify-content-start align-items-center gap-2 flex-wrap">
 
                                         <small className="text-muted d-block mb-1">
 
