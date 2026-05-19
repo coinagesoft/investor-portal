@@ -166,8 +166,9 @@ export default function Files() {
 
                                             {/* View */}
                                             <a
-                                               href={item.fileUrl.replace("/raw/upload/", "/raw/upload/fl_inline/")}
+                                                href={item.fileUrl}
                                                 target="_blank"
+                                                rel="noopener noreferrer"
                                                 className="btn btn-sm btn-icon btn-text-primary"
                                             >
 

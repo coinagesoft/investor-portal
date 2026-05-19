@@ -27,7 +27,7 @@ export async function DELETE(_request, { params }) {
         await cloudinary.uploader.destroy(
             file.publicId,
             {
-                resource_type: "image"
+                resource_type: "raw"
             }
         );
 
